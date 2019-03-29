@@ -10,22 +10,7 @@ class App extends Component {
     value: ""
   };
 
-  constructor(props){
-    super(props);
-    initContentfulExtension(api => {
-      api.window.startAutoResizer();
-
-      const storedValue =
-        api.field.getValue() !== undefined ? api.field.getValue() : "";
-      this.setState({
-        value: { label: storedValue.LocalizedName, value: storedValue },
-        api: api
-      });
-    });
-  }
-
-
-  /*componentDidMount() {
+  componentDidMount() {
     initContentfulExtension(api => {
       api.window.startAutoResizer();
 
@@ -37,7 +22,7 @@ class App extends Component {
       });
     });
     
-  } */
+  } 
 
   updateItems = value => {
     console.log("Update Items method "+value);
@@ -58,8 +43,8 @@ class App extends Component {
         <FindItems
           defaultValue={value}
           updateItems={this.updateItems}
-          apiEndpoint={this.state.api.parameters.instance.apiEndpoint}
-          apiToken={this.state.api.parameters.instance.apiToken}
+          apiEndpoint="https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=SzwPk0x7i9E4ZC5qPMDUwu0mAG3S9gr7&q="
+          apiToken=""
         />
       </div>
     );
