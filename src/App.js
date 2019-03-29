@@ -10,7 +10,22 @@ class App extends Component {
     value: ""
   };
 
-  componentDidMount() {
+  constructor(props){
+    super(props);
+    initContentfulExtension(api => {
+      api.window.startAutoResizer();
+
+      const storedValue =
+        api.field.getValue() !== undefined ? api.field.getValue() : "";
+      this.setState({
+        value: { label: storedValue.LocalizedName, value: storedValue },
+        api: api
+      });
+    });
+  }
+
+
+  /*componentDidMount() {
     initContentfulExtension(api => {
       api.window.startAutoResizer();
 
@@ -22,7 +37,7 @@ class App extends Component {
       });
     });
     
-  }
+  } */
 
   updateItems = value => {
     console.log("Update Items method "+value);
