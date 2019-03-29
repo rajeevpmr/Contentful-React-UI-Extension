@@ -1,0 +1,6 @@
+{
+  "id": "api-integration-extension",
+  "name": "api-integration-extension",
+  "srcdoc": "/build/index.html",
+  "fieldTypes": ["Symbol"]
+}
