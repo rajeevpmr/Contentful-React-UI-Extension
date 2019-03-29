@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import AsyncSelect from "react-select/lib/Async";
 
 
-class Search extends PureComponent {
+class Select extends PureComponent {
   render() {
     const {
       label,
@@ -21,8 +21,8 @@ class Search extends PureComponent {
           </div>
         )}
         <div
-          className="select-search-select"
-          data-qa-class="select-search-select"
+          className="select-search"
+          data-qa-class="select-search"
         >
           <AsyncSelect
             
@@ -41,4 +41,4 @@ class Search extends PureComponent {
   }
 }
 
-export default Search;
+export default Select;

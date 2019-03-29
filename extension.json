@@ -1,6 +1,22 @@
 {
   "id": "api-integration-extension",
-  "name": "api-integration-extension",
-  "srcdoc": "/build/index.html",
-  "fieldTypes": ["Symbol"]
+  "name": "City Lookup",
+  "srcdoc": "./build/index.html",
+  "fieldTypes": ["Object"],
+  "parameters": {
+    "instance": [
+      {
+        "id": "apiToken",
+        "name": "Acuweather API Token",
+        "type": "Symbol",
+        "default": ""
+      },
+      {
+        "id": "apiEndpoint",
+        "name": "Acuweather Autosuggest endpoint",
+        "type": "Symbol",
+        "default": "https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=SzwPk0x7i9E4ZC5qPMDUwu0mAG3S9gr7&q="
+      }
+    ]
+  }
 }

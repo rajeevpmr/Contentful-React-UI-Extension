@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import debounce from "debounce-promise/dist";
-import Search from "../Search";
-import { WEATHER_API_URL, DEBOUNCE } from "../../constants";
+import Select from "../Select";
+import { DEBOUNCE } from "../../constants";
 
 class FindItems extends Component {
   constructor(props) {
@@ -21,26 +21,30 @@ class FindItems extends Component {
       selectedOption: props.defaultValue
     });
   }
+
   promiseOptions = inputValue => {
-    return axios.get(`${WEATHER_API_URL}${inputValue}`).then(res => {
+  
+    return axios.get(`${this.props.apiEndpoint}${inputValue}`).then(res => {
       const items = res.data;
 
       const suggestions = items.map(item => {
-        return { label: item.LocalizedName, value: item.LocalizedName };
+        console.log("For loop "+ item.LocalizedName +" item  "+ item);
+        return { label: item.LocalizedName, value: item };
       });
+      console.log("Suggestions "+ suggestions);
       this.setState({ suggestions });
       return suggestions;
     });
   };
 
-  handleChange = (selectedOption, { action }) => {
-    // you can use the 'action' to do different things here
+  handleChange = (selectedOption) => {
+    console.log("selectedOption "+ selectedOption);
+
     this.setState({
       selectedOption
     });
-    // // this is for update action on selectedOption
-    // // will use the noop defaultProp if the dev didn't define the prop, so no need to conditionally call
-    this.state.actionOnSelectedOption(selectedOption.label);
+    
+    this.state.actionOnSelectedOption(selectedOption.value);
   };
 
   render() {
@@ -48,7 +52,7 @@ class FindItems extends Component {
 
     return (
       <div className="items-select">
-        <Search
+        <Select
           label="items"
           name="items"
           inputId="select-search-autocomplete"

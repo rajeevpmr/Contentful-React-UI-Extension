@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import FindItems from "./components/FindItems";
 import { init as initContentfulExtension } from "contentful-ui-extensions-sdk";
 import "./App.css";
-// import { initApi } from "./api";
+
 
 class App extends Component {
   state = {
@@ -17,7 +17,7 @@ class App extends Component {
       const storedValue =
         api.field.getValue() !== undefined ? api.field.getValue() : "";
       this.setState({
-        value: { label: storedValue, value: storedValue },
+        value: { label: storedValue.LocalizedName, value: storedValue },
         api: api
       });
     });
@@ -25,9 +25,10 @@ class App extends Component {
   }
 
   updateItems = value => {
+    console.log("Update Items method "+value);
     this.setState({
       value: {
-        label: value,
+        label: value.LocalizedName,
         value
       }
     });
@@ -42,6 +43,8 @@ class App extends Component {
         <FindItems
           defaultValue={value}
           updateItems={this.updateItems}
+          apiEndpoint={this.state.api.parameters.instance.apiEndpoint}
+          apiToken={this.state.api.parameters.instance.apiToken}
         />
       </div>
     );
