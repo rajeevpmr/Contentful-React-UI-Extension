@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import debounce from "debounce-promise/dist";
 import Select from "../Select";
-import { DEBOUNCE } from "../../constants";
 
 class FindItems extends Component {
   constructor(props) {
@@ -58,7 +57,7 @@ class FindItems extends Component {
           inputId="select-search-autocomplete"
           value={selectedOption}
           defaultOptions={suggestions}
-          loadOptions={debounce(this.promiseOptions, DEBOUNCE)}
+          loadOptions={debounce(this.promiseOptions, 300)}
           onChange={this.handleChange}
         />
       </div>
