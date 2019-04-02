@@ -15,24 +15,24 @@ class FindItems extends Component {
   }
 
   componentWillReceiveProps(props) {
-    this.promiseOptions(props.defaultValue.label);
+    this.suggestedItems(props.defaultValue.label);
     this.setState({
       selectedOption: props.defaultValue
     });
   }
 
-  promiseOptions = inputValue => {
+  suggestedItems = inputValue => {
   
     return axios.get(`${this.props.apiEndpoint}${inputValue}`).then(res => {
       const items = res.data;
 
-      const suggestions = items.map(item => {
+      const listOfSuggestions = items.map(item => {
         console.log("For loop "+ item.LocalizedName +" item  "+ item);
         return { label: item.LocalizedName, value: item };
       });
-      console.log("Suggestions "+ suggestions);
-      this.setState({ suggestions });
-      return suggestions;
+      console.log("Suggestions "+ listOfSuggestions);
+      this.setState({ listOfSuggestions });
+      return listOfSuggestions;
     });
   };
 
@@ -47,7 +47,7 @@ class FindItems extends Component {
   };
 
   render() {
-    const { selectedOption, suggestions } = this.state;
+    const { selectedOption, listOfSuggestions } = this.state;
 
     return (
       <div className="items-select">
@@ -56,8 +56,8 @@ class FindItems extends Component {
           name="items"
           inputId="select-search-autocomplete"
           value={selectedOption}
-          defaultOptions={suggestions}
-          loadOptions={debounce(this.promiseOptions, 300)}
+          defaultOptions={listOfSuggestions}
+          loadOptions={debounce(this.suggestedItems, 300)}
           onChange={this.handleChange}
         />
       </div>

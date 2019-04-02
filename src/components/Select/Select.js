@@ -24,8 +24,7 @@ class Select extends PureComponent {
           className="select-search"
           data-qa-class="select-search"
         >
-          <AsyncSelect
-            
+          <AsyncSelect 
             name={name}
             label={label}
             defaultMenuIsOpen
